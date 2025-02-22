@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -11,34 +11,51 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+int x = 4;
+
 class _MyAppState extends State<MyApp> {
-  int x = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'My First App',
-            style: TextStyle(fontFamily: 'Satisfy'),
+      home: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Center(
+                child: Text(
+              'Lottery App',
+              style: TextStyle(fontFamily: 'Merienda'),
+            )),
+            backgroundColor: Colors.tealAccent,
           ),
-          backgroundColor: const Color.fromARGB(255, 78, 176, 224),
-        ),
-        
-        body: SafeArea(
-          child: Center(
-              child: Text(
-            x.toString(),
-            style: TextStyle(fontSize: 50),
-          )),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            x++;
-            setState(() {});
-            print(x.toString());
-          },
-          child: Icon(Icons.add),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: Text('The winning lottery number is $x')),
+              Container(
+                height: 150,
+
+                decoration: BoxDecoration(
+                  color: Colors.amberAccent,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.error_outline),
+                    SizedBox(height: 10,),
+                    Text('Better luck next time your number is $x . Try again'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              print('tap');
+            },
+            child: Icon(Icons.refresh),
+          ),
         ),
       ),
     );
